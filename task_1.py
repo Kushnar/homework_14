@@ -23,6 +23,7 @@ def tax_office_report(fun):
 
     return wrapper
 
+
 def board_of_directions(fun):
     def wrapper():
         print('Report to board of directions:')
@@ -34,6 +35,7 @@ def board_of_directions(fun):
                 continue
             else:
                 print(f'{i.capitalize()}: {report.get(i)}$')
+
     return wrapper
 
 
@@ -45,4 +47,3 @@ def report_from_company():
           'income tax': 7000,
           'net profit': 116000}
     return di
-
