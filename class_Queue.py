@@ -31,16 +31,16 @@ class Queue:
 
     def add_items(self, *items):
         if len(items) > self.__max:
-            raise Exception('Length of adding stack is MORE than max stack len!')
+            raise Exception('Length of adding queue is MORE than max queue len!')
         elif len(self.__queue) + len(items) > self.__max:
-            raise Exception(f'This adding will overflow stack! {self.__max - len(self.__queue)} positions left.')
+            raise Exception(f'This adding will overflow queue! {self.__max - len(self.__queue)} positions left.')
         else:
             for i in items:
                 self.__queue.append(i)
 
     def del_item(self):
         if self.length() < 1:
-            raise Exception('Stack is empty')
+            raise Exception('Queue is empty')
         else:
             return self.__queue.pop(0)
 
@@ -55,6 +55,6 @@ class Queue:
 
     def get_item(self):
         if len(self.__queue) == 0:
-            raise Exception('Stack is empty!')
+            raise Exception('Queue is empty!')
         else:
             return self.__queue[0]
