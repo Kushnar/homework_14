@@ -3,13 +3,15 @@
 class Stack:
     def __init__(self, max_=32):
         if not str(max_).isdigit():
-            raise Exception('Using NOT int type in size or max size')
+            raise Exception('Using NOT int type in max size')
         self.__max = int(max_)
         self.__stack = []
         if self.__max <= 0:
             raise Exception('Empty stack!')
 
     def __str__(self):
+        if len(self.__stack) == 0:
+            return f'Stack is empty!'
         return f'{self.__stack}'
 
     def __iter__(self):
@@ -45,9 +47,7 @@ class Stack:
         if self.length() < 1:
             raise Exception('Stack is empty')
         else:
-            i = self.__stack[-1]
-            del self.__stack[-1]
-            return i
+            return self.__stack.pop()
 
     def show_stack(self):
         if len(self.__stack) > 0:
@@ -60,3 +60,5 @@ class Stack:
             raise Exception('Stack is empty!')
         else:
             return self.__stack[-1]
+
+
