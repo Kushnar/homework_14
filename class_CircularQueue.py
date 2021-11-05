@@ -1,6 +1,4 @@
-# 3. Создать класс "очередь".
-
-class Queue:
+class CircularQueue:
     def __init__(self, max_=32):
         if not str(max_).isdigit():
             raise Exception('Using NOT int type in max size')
@@ -10,12 +8,9 @@ class Queue:
             raise Exception('Empty queue!')
 
     def __str__(self):
-        if len(self.__queue) == 0:
+        if self.length() == 0:
             return f'Queue is empty!'
-        return self.__queue
-
-    def __iter__(self):
-        return iter(self.__queue)
+        return f'{self.__queue}'
 
     def is_empty(self):
         if self.length() > 0:
@@ -33,7 +28,7 @@ class Queue:
     def add_items(self, *items):
         if self.length() + len(items) > self.__max:
             for i in items:
-                if self.length() < self.__max:
+                if len(self.__queue) < self.__max:
                     self.__queue.append(i)
                 else:
                     self.__queue.pop(0)
@@ -43,25 +38,24 @@ class Queue:
                 self.__queue.append(i)
 
     def del_item(self):
-        if self.is_empty():
+        if self.length() < 1:
             raise Exception('Queue is empty')
         else:
-            return self.__queue.pop(0)
+            el = self.__queue.pop(0)
+            self.__queue.append(el)
+            return el
 
     def length(self):
         return len(self.__queue)
 
     def get_queue(self):
-        if self.is_empty():
-            return None
-        else:
+        if len(self.__queue) > 0:
             return self.__queue
+        else:
+            return None
 
     def get_item(self):
-        if self.is_empty():
+        if len(self.__queue) == 0:
             raise Exception('Queue is empty!')
         else:
             return self.__queue[0]
-
-
-c = Queue(1)
